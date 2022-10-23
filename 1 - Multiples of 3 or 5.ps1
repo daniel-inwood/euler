@@ -10,20 +10,20 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 $Num = 0
 
 
-$output = 0
+$Output = 0
 
-while($num -lt 1000){
+while($Num -lt 1000){
 
-$updateflag = $false
-if($num % 3 -eq 0){ $updateflag = $true }
-if($num % 5 -eq 0){ $updateflag = $true }
+    $UpdateFlag = $False
+    if($Num % 3 -eq 0){ $UpdateFlag = $true }
+    if($Num % 5 -eq 0){ $UpdateFlag = $true }
 
-if($updateflag -eq $true){ 
-$num
-$output = $output + $num}
+    if($UpdateFlag -eq $True){ 
+        $Output = $output + $Num}
 
-$num++
+    $Num++
 
 }
 
-$output
+Write-Output "`nFind the sum of all the multiples of 3 or 5 below 1000:"
+$Output.ToString('N0')

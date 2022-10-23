@@ -23,4 +23,5 @@ foreach($Entry in $Array){
 if($Entry % 2 -eq 0){ $Total = $total + $Entry}
 }
 
-
+Write-Output "`nBy considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms:"
+$Total.ToString('N0')
