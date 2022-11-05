@@ -18,7 +18,7 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 ####################### make it recognise previous points
 
-$NumberList = 1000
+$NumberList = 999999
 
 $SeenNumbers = @()
 
