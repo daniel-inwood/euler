@@ -19,7 +19,7 @@ while($Num -lt 1000){
     if($Num % 5 -eq 0){ $UpdateFlag = $true }
 
     if($UpdateFlag -eq $True){ 
-        $Output = $output + $Num}
+        $Output = $Output + $Num}
 
     $Num++
 
