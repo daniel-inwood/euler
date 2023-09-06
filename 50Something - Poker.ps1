@@ -11,7 +11,6 @@ ForEach($Value in $Values){
 $CardPool
 
 
-#3amscripts
 function Get-HandScore {
     param($ThisHand)
 
@@ -233,11 +232,6 @@ $Deal++
 
 Write-Host "Player 1 wins:" $P1Wins
 Write-Host "Player 2 wins:" $P2Wins
-
-
-
-############### JESUS CHRIST ALSO CONSIDER HIGH CARD
-
 
 
 
