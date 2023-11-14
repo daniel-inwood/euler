@@ -16,8 +16,6 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 #>
 
 
-####################### make it recognise previous points
-
 $NumberList = 999999
 
 $SeenNumbers = @()
@@ -42,7 +40,6 @@ While($NumberList -gt 1){ ######### A little clumsy, but faster than having PS g
                 $ChainLength++
             }    
             
-        
             If($ChainLength -gt $BiggestChainLength){
                 $BiggestChainLength = $ChainLength
                 $BiggestChainNumber = $StartingNumber

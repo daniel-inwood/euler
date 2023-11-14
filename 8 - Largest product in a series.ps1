@@ -42,7 +42,7 @@ ForEach($SubSeriesNumber in $SubSeriesRange){
     [bigint]$RunningProduct = 1
     ForEach($Digit in $LineValue){
         $Int = 0 + $Digit
-        $Int = $Int -48
+        $Int = $Int -48   ## nasty ASCII bitshift, this is where the bugs live
         $RunningProduct = $Int * $RunningProduct
     }
     

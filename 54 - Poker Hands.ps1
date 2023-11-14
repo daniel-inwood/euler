@@ -1,4 +1,11 @@
-﻿
+﻿<#
+https://projecteuler.net/problem=54
+
+The file, poker.txt, contains one-thousand random hands dealt to two players. Each line of the file contains ten cards (separated by a single space): the first five are Player 1's cards and the last five are Player 2's cards. You can assume that all hands are valid (no invalid characters or repeated cards), each player's hand is in no specific order, and in each hand there is a clear winner.
+
+How many hands does Player 1 win?
+#>
+
 $Values = @("2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A")
 $Suits = @("C", "D", "H", "S")
 $CardPool = @()
@@ -14,7 +21,7 @@ $CardPool
 function Get-HandScore {
     param($ThisHand)
 
-    #$ThisHand = "6D 7C 5D 5H 3S"
+    #$ThisHand = "6D 7C 5D 5H 3S" # < debug hands
     #$ThisHand = "5C JC 2H 5S 3D"
 <#
 Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
@@ -243,3 +250,4 @@ Write-Host "Player 2 wins:" $P2Wins
 
 
 
+# next time: just put all the regexes in a paired array with the corresponding score

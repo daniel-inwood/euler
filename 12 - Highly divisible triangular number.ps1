@@ -29,7 +29,7 @@ $Divisors = 0
 
 While($MaxDivisors -lt 501){
 
-    If(($TriangleNumber % 4) -eq 0){
+    If(($TriangleNumber % 4) -eq 0){    # brute-force performance improvements.... why bother checking for 2 when you can check for 4?
     If(($TriangleNumber % 3) -eq 0){
     If(($TriangleNumber % 5) -eq 0){
 
@@ -56,11 +56,4 @@ While($MaxDivisors -lt 501){
 
 
     
-
-
-
-
-
-
-
 
