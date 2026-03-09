@@ -9,33 +9,29 @@ For example, when the list is sorted into alphabetical order, COLIN, which is wo
 What is the total of all the name scores in the file?
 #>
 
-$NamesListRaw = (Get-Content -LiteralPath "C:\Users\wigan\Desktop\Git Repo\Euler\euler\Names.txt").Split(',') -replace '"'
+$NamesListRaw = (Get-Content -LiteralPath "C:\Users\Daniel\Desktop\Git Repo\Euler\euler\Names.txt").Split(',') -replace '"'
 $NamesListSorted = $NamesListRaw | Sort-Object 
-#$NamesListSorted = $NamesListSorted[0..1] #################################################
 
-$LetterScore = @{}
+$ScoreGrandTotal = 0
+
 $Alphabet = @()
-ForEach ($AsciiCharacter in (65..90)) {$Alphabet += [char]$AsciiCharacter}
-
-$Count = 1
-ForEach($Letter in $Alphabet){
-    $LetterScore.add($Letter, $Count)
-    $Count++
-   }
-
-$RunningTotal = 0
-$NamePosition = 0
-ForEach($Name in $NamesListSorted){
-    $LetterCursor = 0
-    $NameScore = 0
-    While($LetterCursor -lt $Name.Length){
-        $NameScore += $LetterScore[$Name[$LetterCursor]]
-        $LetterCursor++
-        }
-    $NamePosition++
-    $RunningTotal += ($NamePosition * $NameScore)
+ForEach ($AsciiCharacter in (65..90)) { ## Adding each letter to an array to reference it's position in the alphabet later
+    $Alphabet += [char]$AsciiCharacter
     }
 
-$RunningTotal
 
+$ListPosition = 1
+ForEach($Name in $NamesListSorted){
+    $NameScore = 0
+    $Index = 0
+    ForEach($Letter in $Name[0..$Name.Length]){
+        $NameScore += $Alphabet.IndexOf($Name[$Index]) + 1
+        $Index ++
+        }
+    $NameFinalScore = $NameScore * $ListPosition
+    # Write-Host $Name $NameScore $ListPosition $NameFinalScore # debug
+    $ScoreGrandTotal += $NameFinalScore
+    $ListPosition ++
+    }
 
+$ScoreGrandTotal
