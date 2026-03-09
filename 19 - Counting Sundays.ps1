@@ -30,7 +30,7 @@ $TestDate = Get-Date('1901-01-01')
 
 While($TestDate -ne (Get-Date('2000-12-31'))){
     If ($TestDate.DayOfWeek -eq 'Sunday'-and $TestDate.Day -eq 1){ $TestDate; $SundayFirst++ }
-    $TestDate = $TestDate + (New-TimeSpan -Days 1)
+        $TestDate = $TestDate + (New-TimeSpan -Days 1)
     }
 
 

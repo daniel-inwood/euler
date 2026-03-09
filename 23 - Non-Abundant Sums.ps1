@@ -15,7 +15,7 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 Function Perfection-Checker {
     $InputNumber = $args[0]
     $TestNumber = $InputNumber - 1 #essential
-    $SOPD = 0
+    $SOPD = 0  # sum of proper divisors
 
     While($TestNumber -gt 0){
         If($InputNumber % $TestNumber -eq 0){
@@ -54,7 +54,7 @@ $AbundantSumNumbers = @()
 
 ##### DO A NASTY CROSS JOIN AND WHATEVER IS LEFT IS THE RESULT (sum the digits)
 
-ForEach($Num1 in $AbundantNumbers){
+ForEach($Num1 in $AbundantNumbers ){
     $Num1
     ForEach($Num2 in $AbundantNumbers){
         $Sum = $Num1 + $Num2
