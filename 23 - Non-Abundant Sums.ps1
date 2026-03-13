@@ -11,73 +11,50 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 
 #>
 
-
-Function Perfection-Checker {
-    $InputNumber = $args[0]
-    $TestNumber = $InputNumber - 1 #essential
-    $SOPD = 0  # sum of proper divisors
-
-    While($TestNumber -gt 0){
-        If($InputNumber % $TestNumber -eq 0){
-           # $TestNumber #########
-            $SOPD += $TestNumber
+Function Sum-Divisors{
+    param ($DivisorsInput)
+    $ProperDivisorsSum = 0
+    
+    If($DivisorsInput %2 -eq 0){
+        $DivisorsTestCutoff = $DivisorsInput / 2    
         }
-        $TestNumber--
-    }
-
-    If($SOPD -gt $InputNumber){Return "Abundant"}
-    If($SOPD -eq $InputNumber){Return "Perfect"}
-    If($SOPD -lt $InputNumber){Return "Deficient"}
-
+    Else{
+        $DivisorsTestCutoff = ($DivisorsInput + 1) / 2
+        }
+    ForEach($DivisorsInteger in @(1..$DivisorsTestCutoff)){     # Room for plenty of skipping over some integers here
+        If($DivisorsInput % $DivisorsInteger -eq 0){
+            $ProperDivisorsSum += $DivisorsInteger
+            }
+        }
+    Return $ProperDivisorsSum
 }
 
+$TestRange = @(1..28125)
 
-$AbundantNumbers = @()
-$AbundantTest = 2
-
-While($AbundantTest -lt 28123){
-    If((Perfection-Checker $AbundantTest) -eq "Abundant"){
-        $AbundantNumbers += ($AbundantTest)
-        }
-    $AbundantTest++
+$AbundantList = @()
+ForEach($TestInt1 in $TestRange){
+    If((Sum-Divisors $TestInt1) -gt $TestInt1){   # gather abundant numbers
+        $AbundantList += $TestInt1
+        } 
     }
 
 
-
-## $AbundantNumbers | Out-File -LiteralPath "C:\Users\wigan\Desktop\Git Repo\Euler\euler\23 AbunduntNumbersList.txt"
-
-
-
-
-$AbundantSumNumbers = @()
-
-
-##### DO A NASTY CROSS JOIN AND WHATEVER IS LEFT IS THE RESULT (sum the digits)
-
-ForEach($Num1 in $AbundantNumbers ){
-    $Num1
-    ForEach($Num2 in $AbundantNumbers){
-        $Sum = $Num1 + $Num2
-        If($Sum -lt 28123){
-            If($Sum -notin $AbundantSumNumbers){
-                $AbundantSumNumbers += $SizeCheck
+$ResultSum = 0
+ForEach($TestInt2 in $TestRange){
+    If($TestInt2 % 100 -eq 0){Write-Host $TestInt2}
+    $SumProduct = 0
+    :abundancecheck
+    ForEach($AbundantInt in $AbundantList){
+        $SubtractedResult = $TestInt2 - $AbundantInt
+        If($SubtractedResult -gt 0){
+            If((Sum-Divisors $SubtractedResult) -gt $SubtractedResult){ # subtract an abuntant number from the number tested, check if result is also abundant
+                $SumProduct = 1
+                Break abundancecheck
                 }
             }
         }
+    If($SumProduct -eq 0){$ResultSum += $TestInt2}
     }
 
-$AbundantSumNumbers.count
-
-
-
-
-
-
-
-
-
-
-
-
-
+$ResultSum
 
